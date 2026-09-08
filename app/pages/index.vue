@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { apiGetCoffees } from '~/api/coffees'
 
-const { data, pending } = await apiGetCoffees()
+const { data, pending, error } = await apiGetCoffees({
+  lazy: true,
+  server: false,
+})
 const coffees = computed(() => data.value?.data ?? [])
 </script>
 
@@ -11,7 +14,11 @@ const coffees = computed(() => data.value?.data ?? [])
     <h1 class="mt-2 font-display text-2xl font-semibold tracking-tight text-bone">Каталог</h1>
     <p class="mt-1 text-sm text-muted-foreground">5 сортов. 5 историй.</p>
 
-    <div v-if="pending" class="mt-6 grid grid-cols-2 gap-3">
+    <p v-if="error" class="mt-6 text-sm text-destructive">
+      Не удалось загрузить каталог. Проверьте API и CORS.
+    </p>
+
+    <div v-else-if="pending" class="mt-6 grid grid-cols-2 gap-3">
       <div v-for="i in 4" :key="i" class="surface animate-pulse overflow-hidden">
         <div class="h-28 bg-bone/5" />
         <div class="space-y-2 p-3">

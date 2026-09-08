@@ -9,11 +9,17 @@ const route = useRoute()
 const router = useRouter()
 const cart = useCartStore()
 
-const { data } = await apiGetCoffee(() => String(route.params.slug))
+const { data, status } = await apiGetCoffee(() => String(route.params.slug), {
+  lazy: true,
+  server: false,
+})
 const coffee = computed(() => data.value?.data)
 
-if (!coffee.value) await navigateTo('/')
-
+watch(status, async (s) => {
+  if (s === 'error' || (s === 'success' && !coffee.value)) {
+    await navigateTo('/')
+  }
+})
 const theme = computed(() => useCoffeeTheme(coffee.value?.slug || 'bloom'))
 const imageSrc = computed(() => useImageUrl(coffee.value?.image, coffee.value?.slug))
 

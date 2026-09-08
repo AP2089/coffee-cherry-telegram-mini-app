@@ -2,13 +2,17 @@ import { StatusCodes } from 'http-status-codes'
 
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig()
+  const baseURL = String(config.public.apiUrl || '').trim()
+
+  if (import.meta.client && !baseURL) {
+    console.error('[api] NUXT_PUBLIC_API_URL is empty — API requests will fail')
+  }
 
   const api = $fetch.create({
-    retry: 6,
-    retryDelay: 10000,
+    retry: 1,
+    retryDelay: 800,
     retryStatusCodes: [
       StatusCodes.TOO_MANY_REQUESTS,
-      StatusCodes.INTERNAL_SERVER_ERROR,
       StatusCodes.BAD_GATEWAY,
       StatusCodes.SERVICE_UNAVAILABLE,
       StatusCodes.GATEWAY_TIMEOUT,
@@ -16,7 +20,7 @@ export default defineNuxtPlugin(() => {
   })
 
   const apiContent = api.create({
-    baseURL: String(config.public.apiUrl),
+    baseURL,
   })
 
   return {

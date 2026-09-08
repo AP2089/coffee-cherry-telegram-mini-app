@@ -7,9 +7,17 @@ export default defineNuxtPlugin(() => {
     themeParams.mount()
     backButton.mount()
     viewport.mount()
-    viewport.expand()
+    try {
+      viewport.expand()
+    } catch {
+      // expand may be unavailable on some clients
+    }
     miniApp.ready()
   } catch {
-    // Running outside Telegram (dev browser)
+    try {
+      miniApp.ready()
+    } catch {
+      // Running outside Telegram (dev browser)
+    }
   }
 })

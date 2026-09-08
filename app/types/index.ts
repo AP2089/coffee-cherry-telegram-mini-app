@@ -1,0 +1,68 @@
+export type CoffeeWeight = 250 | 500 | 1000
+
+export interface Coffee {
+  _id: string
+  name: string
+  slug: string
+  country: string
+  region: string
+  variety: string
+  process: string
+  altitude: string
+  description: string
+  story: string
+  flavorNotes: string[]
+  price: number
+  weights: CoffeeWeight[]
+  image: string
+  gallery: string[]
+  stock: number
+}
+
+export interface Customer {
+  name: string
+  phone: string
+  email: string
+  city: string
+  address: string
+  comment?: string
+}
+
+export interface Order {
+  _id: string
+  totalPrice: number
+  status: string
+}
+
+export interface CreateOrderPayload {
+  items: Array<{
+    slug: string
+    weight: CoffeeWeight
+    quantity: number
+  }>
+  customer: Customer
+}
+
+export interface CreateContactMessagePayload {
+  name: string
+  email: string
+  message: string
+}
+
+export interface ApiResponse<T> {
+  success: boolean
+  data: T
+  message?: string
+}
+
+export interface CartItem {
+  slug: string
+  name: string
+  weight: CoffeeWeight
+  quantity: number
+  price: number
+  image: string
+  country: string
+}
+
+export type CoffeeSlug = 'bloom' | 'velvet' | 'santos' | 'noir' | 'ember'

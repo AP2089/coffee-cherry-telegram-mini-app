@@ -78,7 +78,7 @@ function openAiAssistant() {
 
     <button
       type="button"
-      class="flex flex-1 flex-col items-center justify-center gap-1 text-bone/30 transition-colors hover:text-bone/60"
+      class="flex flex-1 cursor-pointer flex-col items-center justify-center gap-1 text-bone/30 transition-colors hover:text-bone/60"
       @click="openAiAssistant"
     >
       <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">

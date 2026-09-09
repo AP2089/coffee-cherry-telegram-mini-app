@@ -147,7 +147,7 @@ onUnmounted(() => {
             v-for="w in weights"
             :key="w"
             type="button"
-            class="border px-2 py-2.5 text-sm font-medium transition-colors"
+            class="cursor-pointer border px-2 py-2.5 text-sm font-medium transition-colors"
             :class="
               selectedWeight === w
                 ? 'border-bronze bg-bronze/15 text-bronze'
@@ -164,13 +164,15 @@ onUnmounted(() => {
         <div class="flex items-center border border-border">
           <button
             type="button"
-            class="px-3 py-2 text-bone/60"
+            class="cursor-pointer px-3 py-2 text-bone/60"
             @click="quantity = Math.max(1, quantity - 1)"
           >
             −
           </button>
           <span class="w-8 text-center text-sm font-semibold">{{ quantity }}</span>
-          <button type="button" class="px-3 py-2 text-bone/60" @click="quantity++">+</button>
+          <button type="button" class="cursor-pointer px-3 py-2 text-bone/60" @click="quantity++">
+            +
+          </button>
         </div>
 
         <button
@@ -180,8 +182,8 @@ onUnmounted(() => {
             coffee.stock <= 0
               ? 'cursor-not-allowed bg-bone/10 text-bone/30'
               : added
-                ? 'bg-emerald-500/20 text-emerald-400'
-                : 'bg-bronze text-bone'
+                ? 'cursor-pointer bg-emerald-500/20 text-emerald-400'
+                : 'cursor-pointer bg-bronze text-bone'
           "
           :disabled="coffee.stock <= 0"
           @click="addToCart"

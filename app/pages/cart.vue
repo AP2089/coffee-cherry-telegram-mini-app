@@ -127,7 +127,7 @@ const handleOrder = handleSubmit(async (values) => {
           <div class="flex flex-col items-end justify-between">
             <button
               type="button"
-              class="text-bone/25 transition-colors hover:text-destructive"
+              class="cursor-pointer text-bone/25 transition-colors hover:text-destructive"
               @click="cart.removeItem(item.slug, item.weight)"
             >
               ✕
@@ -135,7 +135,7 @@ const handleOrder = handleSubmit(async (values) => {
             <div class="flex items-center gap-1.5">
               <button
                 type="button"
-                class="flex h-7 w-7 items-center justify-center border border-border text-bone/60"
+                class="flex h-7 w-7 cursor-pointer items-center justify-center border border-border text-bone/60"
                 @click="cart.updateQuantity(item.slug, item.weight, item.quantity - 1)"
               >
                 −
@@ -143,7 +143,7 @@ const handleOrder = handleSubmit(async (values) => {
               <span class="w-5 text-center text-sm font-semibold">{{ item.quantity }}</span>
               <button
                 type="button"
-                class="flex h-7 w-7 items-center justify-center border border-border text-bone/60"
+                class="flex h-7 w-7 cursor-pointer items-center justify-center border border-border text-bone/60"
                 @click="cart.updateQuantity(item.slug, item.weight, item.quantity + 1)"
               >
                 +
@@ -237,8 +237,8 @@ const handleOrder = handleSubmit(async (values) => {
 
           <button
             type="submit"
-            class="flex w-full items-center justify-center py-3.5 text-sm font-semibold text-bone transition-opacity"
-            :class="submitting ? 'bg-bronze/60' : 'bg-bronze'"
+            class="flex w-full cursor-pointer items-center justify-center py-3.5 text-sm font-semibold text-bone transition-opacity"
+            :class="submitting ? 'cursor-wait bg-bronze/60' : 'bg-bronze'"
             :disabled="submitting"
           >
             {{ submitting ? 'Отправка…' : 'Оформить заказ' }}
@@ -251,7 +251,7 @@ const handleOrder = handleSubmit(async (values) => {
 
         <button
           type="button"
-          class="mx-auto block py-2 text-sm text-bone/25 transition-colors hover:text-destructive"
+          class="mx-auto block cursor-pointer py-2 text-sm text-bone/25 transition-colors hover:text-destructive"
           @click="cart.clearCart()"
         >
           Очистить корзину

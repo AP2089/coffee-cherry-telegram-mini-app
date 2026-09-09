@@ -170,11 +170,7 @@ onUnmounted(() => {
             −
           </button>
           <span class="w-8 text-center text-sm font-semibold">{{ quantity }}</span>
-          <button
-            type="button"
-            class="cursor-pointer px-3 py-2 text-bone/60"
-            @click="quantity++"
-          >
+          <button type="button" class="cursor-pointer px-3 py-2 text-bone/60" @click="quantity++">
             +
           </button>
         </div>
